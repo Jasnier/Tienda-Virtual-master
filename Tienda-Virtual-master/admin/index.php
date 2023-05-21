@@ -17,7 +17,7 @@ $_SESSION["direccion"]=$row["direccion"];
 $volver=($_SESSION["volver"])?$_SESSION["volver"]:"	../admin/listado_productos.php";
 header("Location: listado_productos.php");
 } else {
-$error="Usuario/Clave no registrados";
+    echo '<script>alert("Usuario no encontrado");</script>';
 }
 }
 ?>
@@ -31,7 +31,7 @@ $error="Usuario/Clave no registrados";
 	
 		<!-- Website Font style -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-		<title>Ingreso Administrador | Frutas y Verduras</title>
+		<title>Ingreso Administrador | Coffe Cloud</title>
 		
 		<style>
 			#success_message{ 

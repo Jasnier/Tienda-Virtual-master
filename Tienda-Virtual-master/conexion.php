@@ -16,8 +16,6 @@ $fecha=$row[$fecha];
                 $meses=array(enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre);
                 return "$dia / ".$meses[$mes -1]." / $anio";
                                                     }
-}else{
-    echo $conn ->host_info;
 }
 ?>
 <?php

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-about-us">
-                        <a href="index.php"><img src="img/logo-fruteria-gray.png" alt="Logo Frutería Bilbao 610 Gris"></a>
+                        <a href="index.php"><img src="img/Logotipopx.png" alt="Logo Frutería Bilbao 610 Gris"></a>
                         <p>Nuestra empresa ha sido creada para llevar a su hogar un servicio integral e innovador en la venta de verduras y frutas a domicilio. Frutería Bilbao Ofrece, un concepto de vida saludable basado en una alimentación sana y natural.</p>
                         <div class="footer-social">
                             <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -34,14 +34,11 @@
                 
                 <div class="col-md-4">
                     <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Regístrese en nuestro boletín y obtenga ofertas exclusivas que no encontrará en ningún otro sitio directamente a correo electrónico</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Ingrese su Email">
-                                <input type="submit" value="Suscribirse">
-                            </form>
-                        </div>
+                        <h2 class="footer-wid-title">Desarrolladores</h2>
+                        <p>Jasnier Andres Perez Usuga</p>
+                        <p>Juan Camilo Yali Florez</p>
+                        <p>Kevin Alexander Pava Leon</p>
+                        <p>Joheen Andre Vergara Cuellar</p>
                     </div>
                 </div>
             </div>
@@ -52,17 +49,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2017 Frutería Bilbao 610. Todos Los Derechos Reservados. Creado con mucho <i class="fa fa-heart"></i> por <a href="https://www.behance.net/josemachucasazo" target="_blank">José Machuca</a></p>
+                        <p>&copy; 2023 Coffe Cloud. Todos Los Derechos Reservados.</p>
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="footer-card-icon">
-                        <span>Pago seguro con </span>
-                        <i class="fa fa-cc-discover"></i>
-                        <i class="fa fa-cc-mastercard"></i>
-                        <i class="fa fa-cc-visa"></i>
-                    </div>
+      
                 </div>
             </div>
         </div>
