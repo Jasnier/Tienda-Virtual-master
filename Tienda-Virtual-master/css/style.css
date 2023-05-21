@@ -81,7 +81,7 @@ body { font-family: 'Titillium Web', sans-serif; }
 }
 
 .mainmenu-area {
-    background: none repeat scroll 0 0 #a6cf11;
+    background: none repeat scroll 0 0 #0b58c4;
     font-family: "Roboto Condensed",sans-serif;
     text-transform: uppercase;   
     width: 100%;
@@ -118,7 +118,7 @@ body { font-family: 'Titillium Web', sans-serif; }
     font-weight: 700;
 }
 .product-count {
-    background: none repeat scroll 0 0 #a6cf11;
+    background: none repeat scroll 0 0 #0b58c4;
     border-radius: 50%;
     color: #fff;
     display: inline-block;
@@ -137,7 +137,7 @@ body { font-family: 'Titillium Web', sans-serif; }
 
 
 .shopping-item:hover {
-    background: none repeat scroll 0 0 #a6cf11;
+    background: none repeat scroll 0 0 #0b58c4;
     border-color: #a6cf11;
 }
 .shopping-item:hover a {
@@ -174,7 +174,7 @@ body { font-family: 'Titillium Web', sans-serif; }
 .slide-text {display: table-cell;vertical-align: middle}
 
 .zigzag-bottom {
-background: none repeat scroll 0 0 #a6cf11;
+background: none repeat scroll 0 0 #0b58c4;
 bottom: -80px;
 height: 165px;
 left: -5%;
@@ -224,9 +224,9 @@ z-index: 9;
 
 
 .readmore {
-    background: none repeat scroll 0 0 #a6cf11;
-    color: #fff;
-    border: 1px solid #a6cf11;
+    background: none repeat scroll 0 0 #fff;
+    color: #000;
+    border: 1px solid #000;
     display: inline-block;
     font-size: 20px;
     margin-top: 15px;
@@ -235,11 +235,11 @@ z-index: 9;
 }
 
 
-.readmore:hover {background: #222;text-decoration: none;color: #fff;border: 1px solid #fff}
+.readmore:hover {background: #0a090c;text-decoration: none;color: #fff;border: 1px solid #fff}
 
 
 .promo-area {
-  background: none repeat scroll 0 0 #a6cf11;
+  background: none repeat scroll 0 0 #4d6cfa;
   color: #fff;
   padding: 77px 0 200px;
 }
@@ -471,19 +471,19 @@ padding: 35px 0 180px;}
 
 
 .footer-social a {
-  background: none repeat scroll 0 0 #a6cf11;
+  background: none repeat scroll 0 0 #4D6CFA;
   color: #fff;
   display: inline-block;
   font-size: 20px;
   height: 40px;
   margin-bottom: 10px;
   margin-right: 10px;
-  padding-top: 5px;
+  padding-top: 9px;
   text-align: center;
-  width: 40px;border: 1px solid #a6cf11;
+  width: 40px;border: 1px solid #4D6CFA;
 }
 
-.footer-social a:hover {background-color: #222;border-color: #666}
+.footer-social a:hover {background-color: #222;border-color: #666 ; color:#0b58c4}
 
 .footer-social {margin-top: 20px}
 
@@ -496,7 +496,7 @@ padding: 35px 0 180px;}
     width: 100%;
 }
 .newsletter-form input[type="submit"] {
-    background: none repeat scroll 0 0 #a6cf11;
+    background: none repeat scroll 0 0 #4D6CFA;
     border: medium none;
     color: #fff;
     display: inline-block;
@@ -569,7 +569,7 @@ width: 10px;
   margin: 10px 0 0;
 }
 
-.product-big-title-area {background: url(../img/crossword.png) repeat scroll 0 0 #a6cf11}
+.product-big-title-area {background: url(../img/crossword.png) repeat scroll 0 0 #362dea}
 
 .product-bit-title h2 {
   font-family: raleway;

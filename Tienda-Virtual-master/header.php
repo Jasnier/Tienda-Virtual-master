@@ -31,7 +31,7 @@
                 <div class="col-sm-12">
                     <div class="logo">
                         <center>
-                            <h1><a href="index.php"><img src="img/logo-fruteria.png" alt="Logo Frutería Bilbao 610" class="img-responsive"></a></h1>
+                            <h1><a href="index.php"><img src="img/Logotipo.png" alt="Logo" class="img-responsive"></a></h1>
                         </center>
                     </div>
                 </div>
