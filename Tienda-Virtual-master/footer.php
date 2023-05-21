@@ -5,13 +5,15 @@
                 <div class="col-md-4">
                     <div class="footer-about-us">
                         <a href="index.php"><img src="img/Logotipopx.png" alt="Logo Frutería Bilbao 610 Gris"></a>
-                        <p>Nuestra empresa ha sido creada para llevar a su hogar un servicio integral e innovador en la venta de verduras y frutas a domicilio. Frutería Bilbao Ofrece, un concepto de vida saludable basado en una alimentación sana y natural.</p>
-                        <div class="footer-social">
-                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/?lang=es" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                        </div>
+                        <p>Esta pagina web ha sido creada para optimizar la compra/venta de los productos de la cafeteria de la universidad Uniminuto Centro Regional Girardot</p>
+                        <!--
+                             <div class="footer-social">
+                                <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/?lang=es" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
+                                <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        -->
                     </div>
                 </div>
                 

@@ -66,7 +66,7 @@ $total_pag = ceil($total/$max)-1;
                                             <div class="slide-content">
                                                 <h2>Carrito de Compras </h2>
                                                 <p>Para hacer sus pedido utilizaremos tecnologia de acuerdo a los tiempos de hoy "carrito de compras" adaptado a sus necesidades</p>
-                                                <a href="tienda.php" class="readmore">Visite la tienda <i class="fa fa-shopping-cart"></i></a>
+                                                <a href="tienda.php" class="readmore">Visite el menu <i class="fa fa-shopping-cart"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,8 +84,8 @@ $total_pag = ceil($total/$max)-1;
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-6">
                                             <div class="slide-content">
-                                                <h2>Compre desde su casa</h2>
-                                                <p>Nuestra empresa ha sido creada para llevar a su hogar un servicio integral e innovador en la venta de verduras y frutas a domicilio. Frutería</p>
+                                                <h2>Compre desde su celular o PC</h2>
+                                                <p>Nuestra plataforma ha sido creada para hacer mas accesible la compra de los productos</p>
                                                 <a href="registro.php" class="readmore">Registrese En Nuestro Sitio <i class="fa fa-users"></i></a>
                                             </div>
                                         </div>

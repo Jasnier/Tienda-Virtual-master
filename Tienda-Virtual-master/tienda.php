@@ -136,7 +136,7 @@ $dir = "";
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center padd-y-b-10">
-                        <h2 class="wow fadeIn">Tienda</h2>
+                        <h2 class="wow fadeIn">Menu</h2>
                         <h3 class="product-bit-title wow fadeIn">Filtros de Productos</h3>
                         <form class="form-inline" action="" method="get">
                             <input type="hidden" name="consulta" value="1" />
