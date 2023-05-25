@@ -1,4 +1,35 @@
 <?php
+// Obtener la categoría seleccionada (si se ha seleccionado)
+$categoria = $_GET['categoria'];
+
+// Consulta SQL para obtener los productos filtrados por categoría
+if (!empty($categoria)) {
+    $consulta = "SELECT * FROM productos WHERE categoria = '$categoria'";
+} else {
+    $consulta = "SELECT * FROM productos";
+}
+
+// Ejecutar la consulta y procesar los resultados
+// ...
+?>
+En este ejemplo, se verifica si se ha seleccionado una categoría ($categoria). Si se ha seleccionado una categoría, la consulta SQL se modifica para incluir la cláusula WHERE que filtra los productos por esa categoría específica. De lo contrario, si no se ha seleccionado una categoría, se seleccionan todos los productos sin aplicar ningún filtro.
+
+Recuerda adaptar este código a tu estructura de base de datos y a las variables que estés utilizando en tu proyecto.
+
+Espero que esto solucione el problema de filtrado por categoría. Si sigues teniendo dificultades, por favor proporciona más detalles o el código relevante para que pueda ayudarte mejor.
+
+
+
+
+
+User
+implementa este codigo en el mio porfavor
+ChatGPT
+Aquí tienes el código modificado con las modificaciones sugeridas para filtrar los productos por categoría:
+
+php
+Copy code
+<?php
 error_reporting(E_ALL ^ E_NOTICE);
 if (!isset($_SESSION)) session_start();
 if (!$_SESSION["admin_id"]) {
@@ -18,8 +49,7 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
         echo 'Ha ocurrido un error al subir la imagen.';
     }
     
-    $unidad = implode(',', $_POST["unidad"]);
-    $q = "INSERT INTO `productos` (`id`, `nombre`, `codigo`, `categoria`, `frase_promocional`, `unidad`, `precio`, `disponibilidad`, `descripcion`, `promocion`, `fecha`) VALUES (NULL, '$_POST[nombre]', '$_POST[codigo]', '$_POST[categoria]', '$_POST[frase_promocional]', '$unidad', '$_POST[precio]', '$_POST[disponibilidad]', '$_POST[descripcion]', '$_POST[promocion]', CURRENT_TIMESTAMP)";
+    $q = "INSERT INTO `productos` (`id`, `nombre`, `codigo`, `categoria`, `frase_promocional`, `precio`, `disponibilidad`, `descripcion`, `promocion`, `fecha`) VALUES (NULL, '$_POST[nombre]', '$_POST[codigo]', '$_POST[categoria]', '$_POST[frase_promocional]', '$_POST[precio]', '$_POST[disponibilidad]', '$_POST[descripcion]', '$_POST[promocion]', CURRENT_TIMESTAMP)";
     
     $resource = $conn->query($q);
     
@@ -31,8 +61,22 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
         echo 'Ha ocurrido un error al agregar el producto.';
     }
 }
-?>
 
+// Obtener la categoría seleccionada (si se ha seleccionado)
+$categoria = $_GET['categoria'];
+
+// Consulta SQL para obtener los productos filtrados por categoría
+if (!empty($categoria)) {
+    $consulta = "SELECT * FROM productos WHERE categoria = '$categoria'";
+} else {
+    $consulta = "SELECT * FROM productos";
+}
+
+// Ejecutar la consulta y procesar los resultados
+$resource = $conn->query($consulta);
+// ...
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -77,7 +121,7 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                            <input name="nombre" placeholder="Nombre del Producto" class="form-control" type="text">
+                            <input name="nombre" placeholder="Nombre del Producto" class="form-control" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -88,7 +132,7 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-                            <input name="codigo" placeholder="Código del Producto" class="form-control" type="text">
+                            <input name="codigo" placeholder="Código del Producto" class="form-control" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -99,13 +143,13 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
 							<div class="col-md-4 selectContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<select name="categoria" id="categoria" class="form-control selectpicker" >
-										<option value=" " >Seleccione una categoria</option>
-									 	<option value="Frutas">Frutas</option>
-									 	<option value="Legumbres">Legumbres</option>
-									 	<option value="Congelados">Congelados</option>
-									 	<option value="Coctel">Coctel</option>
-									 	<option value="Verduras">Verduras</option>
+									<select name="categoria" id="categoria" class="form-control selectpicker" required>
+										<option value="" selected>Seleccione una categoría</option>
+									 	<option value="Bebidas">Bebidas</option>
+									 	<option value="Helados">Helados</option>
+									 	<option value="Dulces">Dulces</option>
+									 	<option value="Comidas Rapidas">Comidas Rapidas</option>
+									 	<option value="Paquetes">Paquetes</option>
 									</select>
 								</div>
 							</div>
@@ -117,37 +161,12 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                            <input name="frase_promocional" placeholder="Frase Promocional" class="form-control" type="text">
+                            <input name="frase_promocional" placeholder="Frase Promocional" class="form-control" type="text" required>
                         </div>
                     </div>
                 </div>
 
-                <!-- Multiple Checkboxes -->
-                <div class="form-group"> 
-					 	<label class="col-md-4 control-label">Unidad de medida</label>
-							<div class="col-md-4 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<select name="unidad[]" id="colores" class="form-control selectpicker" >
-										<option value=" " >Seleccione Unidad de Medida</option>
-									 	<option value="Unidad">Unidad</option>
-									 	<option value="1 Kilo">1 Kilo</option>
-									 	<option value="900g">900g</option>
-									 	<option value="800g">800g</option>
-									 	<option value="700g">700g</option>
-									 	<option value="600g">600g</option>
-									 	<option value="500g">500g</option>
-									 	<option value="400g">400g</option>
-                                        <option value="300g">300g</option>
-                                        <option value="200g">200g</option>
-                                        <option value="100g">100g</option>
-                                        <option value="900g">900g</option>
-                                        <option value="1Litro">1Litro</option>
-									 	<option value="1/2Litro">1/2Litro</option>
-									</select>
-								</div>
-							</div>
-					</div>
+               
 
                 <!-- Text input-->
                 <div class="form-group">
@@ -155,14 +174,13 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                            <input name="precio" placeholder="Precio" class="form-control" type="text">
+                            <input name="precio" placeholder="Precio" class="form-control" type="text" required>
                         </div>
                     </div>
                 </div>
 
                 <!-- Text input-->
-			<!-- Disponibilidad -->
-					<div class="form-group">
+                <div class="form-group">
 						 <label class="col-md-4 control-label">Disponibilidad</label>
 						 <div class="col-md-4 inputGroupContainer">        	      
 							<div class="radio">
@@ -174,20 +192,19 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
 						 </div>
 					</div>
 
-                <!-- Textarea -->
+                <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Descripción</label>
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                            <textarea class="form-control" name="descripcion" placeholder="Descripción"></textarea>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                            <input name="descripcion" placeholder="Descripción" class="form-control" type="text" required>
                         </div>
                     </div>
                 </div>
 
                 <!-- Text input-->
-			<!-- En Promoción -->
-					<div class="form-group">
+                <div class="form-group">
 						 <label class="col-md-4 control-label">En Promoción</label>
 						 <div class="col-md-4 inputGroupContainer">        	      
 							<div class="radio">
@@ -197,7 +214,7 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
 							  <label><input type="radio" name="promocion" value="0" required>No</label>
 							</div>
 						 </div>
-					</div>
+				</div>
 
                 <!-- File Button -->
                 <div class="form-group">
@@ -205,19 +222,21 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
                     <div class="col-md-4 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-                            <input id="imagen" name="imagen" class="form-control" type="file">
+                            <input type="file" name="imagen" id="imagen" required>
                         </div>
                     </div>
                 </div>
+
+                <!-- Success message -->
+                <div class="alert alert-success" role="alert" id="success_message">¡El producto se ha agregado correctamente!</div>
 
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-warning" name="agregarProducto" value="agregarProducto">Agregar Producto <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" class="btn btn-warning" name="agregarProducto" value="agregarProducto">Agregar Producto</button>
                     </div>
                 </div>
-
             </fieldset>
         </form>
     </div>

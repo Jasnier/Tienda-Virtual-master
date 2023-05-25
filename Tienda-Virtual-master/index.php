@@ -159,7 +159,7 @@ $total_pag = ceil($total/$max)-1;
                             <a href="producto.php?id=<?php echo $row["id"]?>"><img src="img/<?php echo $row["codigo"]?>.jpg" alt="" class="product-thumb img-thumbnail"></a>
                             <h2><a href="producto.php?id=<?php echo $row["id"]?>"><?php echo $row["nombre"]?></a></h2>
                             <div class="product-wid-price">
-                               <ins>$ <?php echo $row["precio"]?> <?php echo $row["unidad"]?></ins> Antes $<del><?php echo $row["precio"]+($row["precio"]*0.4)?></del>
+                               <ins>$ <?php echo $row["precio"]?></ins> Antes $<del><?php echo $row["precio"]+($row["precio"]*0.1)?> </del><ins><br> <?php echo $row["codigo"]?></ins>
                             </div>                            
                         </div>
                     </div>

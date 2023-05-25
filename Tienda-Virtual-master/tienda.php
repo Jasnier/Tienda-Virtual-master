@@ -11,6 +11,7 @@ require_once('conexion.php');
 $max=24;
 $por_pagina = 24;
 $pag=0;
+
 if(isset($_GET["pag"]) && $_GET["pag"] <>""){
     $pag=$_GET["pag"];
 }
@@ -143,16 +144,19 @@ $dir = "";
                             <select name="pre" id="" class="form-control" onChange="submit();">
                                 
                                 <option value="">Rangos de Precios</option>
-                                <option value="<?php echo $minPrecio; ?>;999" <?php if($_GET["pre"] == "".$minPrecio.";999") echo "selected"; ?>>Entre $<?php echo $minPrecio; ?> y $1.000</option>
+                                <option value="<?php echo $minPrecio=0; ?>;999" <?php if($_GET["pre"] == "".$minPrecio.";999") echo "selected"; ?>>Entre $<?php echo $minPrecio; ?> y $1.000</option>
                                 <option value="1000;1999" <?php if($_GET["pre"] == "1000;1999") echo "selected"; ?>>Entre $1.000 y $2.000</option>
                                 <option value="2000;2999" <?php if($_GET["pre"] == "2000;2999") echo "selected"; ?>>Entre $2.000 y $3.000</option>
                                 <option value="3000;3999" <?php if($_GET["pre"] == "3000;3999") echo "selected"; ?>>Entre $3.000 y $4.000</option>
                                 <option value="4000;4999" <?php if($_GET["pre"] == "4000;4999") echo "selected"; ?>>Entre $4.000 y $5.000</option>
                                 <option value="5000;<?php echo $maxPrecio; ?>" <?php if($_GET["pre"] == "5000;".$maxPrecio."") echo "selected"; ?>>Sobre $5.000</option>
                             </select>
+                      <!--
                             <select name="cat" class="form-control" id="" onChange="javascript: submit();">
                                 <option value="">Categorías</option>
-                                <?php 
+                                
+                            <?php
+                            /* 
                                 $qc="SELECT categoria FROM `productos` GROUP BY categoria";
                                 $rc=$conn->query($qc);
                                 while($rowc = $rc->fetch_assoc()){
@@ -167,8 +171,9 @@ $dir = "";
                                     
                                     echo '<option value="'.$categoria.'" '.$selected.'>'.$categoria.'</option>';
                                      
-                                    } ?>
+                                    } */?>
                             </select>
+                                -->
                             <input type="text" class="form-control" name="s" value="<?php echo isset($_GET["s"]) ? $_GET["s"] : '' ?>" onChange="submit();" placeholder="Palabra Clave">
                             <input type="submit" class="form-control" value="buscar">
                         </form>

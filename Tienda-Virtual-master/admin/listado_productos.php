@@ -17,7 +17,7 @@ if(isset($_GET["pag"]) && $_GET["pag"] <>""){
 $pag=$_GET["pag"];
 }
 $inicio=$pag * $max;
-$query="SELECT id, nombre, frase_promocional, precio, codigo, categoria, unidad, disponibilidad, descripcion, promocion FROM productos ORDER BY fecha DESC";
+$query="SELECT id, nombre, frase_promocional, precio, codigo, categoria, disponibilidad, descripcion, promocion FROM productos ORDER BY fecha DESC";
 $query_limit= $query ." LIMIT $inicio,$max";
 $resource = $conn->query($query_limit);
 if (isset($_GET["total"])) {
@@ -67,11 +67,9 @@ $total_pag = ceil($total/$max)-1;
             <table class="table">
                 <thead>
                   <tr>
-                    <th>Foto Producto</th>
                     <th>Nombre Producto</th>
                     <th>Código</th>
                     <th>Categoría</th>
-                    <th>Unidad</th>
                     <th>Precio</th>
                     <th>¿Disponible?</th>
 					<th>En Promoción</th>
@@ -82,11 +80,9 @@ $total_pag = ceil($total/$max)-1;
                 <tbody>
                  <?php  while ($row = $resource->fetch_assoc()){?>
                   <tr>
-                    <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><img src="/img/<?php echo $row["codigo"]?>.jpg" class="img-responsive" alt=""></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["nombre"]?></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["codigo"]?></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["categoria"]?></td>
-                    <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["unidad"]?></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3">$<?php echo number_format($row["precio"])?></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["disponibilidad"]?></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["promocion"]?></td>

@@ -11,7 +11,7 @@ require_once('../conexion.php'); ?>
 <?php
 if(isset($_POST["enviar"]) && $_POST["enviar"] == "Modificar"){
 		$unidad=implode(',',$_POST["unidad"]);
-		$q="UPDATE `productos` SET `nombre` = '$_POST[nombre]', `codigo` = '$_POST[codigo]', `categoria` = '$_POST[categoria]', `frase_promocional` = '$_POST[frase_promocional]', `unidad` = '$unidad', `precio` = '$_POST[precio]', `disponibilidad` = '$_POST[disponibilidad]', `descripcion` = '$_POST[descripcion]', `promocion` = '$_POST[promocion]' WHERE `productos`.`id` = $_POST[id];";
+		$q="UPDATE `productos` SET `nombre` = '$_POST[nombre]', `codigo` = '$_POST[codigo]', `categoria` = '$_POST[categoria]', `frase_promocional` = '$_POST[frase_promocional]', `precio` = '$_POST[precio]', `disponibilidad` = '$_POST[disponibilidad]', `descripcion` = '$_POST[descripcion]', `promocion` = '$_POST[promocion]' WHERE `productos`.`id` = $_POST[id];";
 		$resource=$conn->query($q);
 		header("Location: listado_productos.php");
 	}
@@ -72,10 +72,10 @@ $arrayColores = explode(",",$rowColores);
 			 codigo: {
                 validators: {
                      stringLength: {
-                        min: 6,
+                        min: 5,
                     },
                     notEmpty: {
-                        message: 'Ingrese Codigo del Producto (Mínimo 6 caracteres)'
+                        message: 'Ingrese Codigo del Producto (Mínimo 5 caracteres)'
                     }
                 }
             },
@@ -203,11 +203,11 @@ $arrayColores = explode(",",$rowColores);
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
 									<select name="categoria" id="categoria" class="form-control selectpicker" >
 										<option value=" " >Seleccione Una categoría</option>
-										 <option value="Frutas"<?php if($row["categoria"]=="Frutas") echo "selected" ?>>Frutas</option>
-										 <option value="Legumbres"<?php if($row["categoria"]=="Legumbres") echo "selected" ?>>Legumbres</option>
-										 <option value="Congelados"<?php if($row["categoria"]=="Congelados") echo "selected" ?>>Congelados</option>
-										 <option value="Coctel"<?php if($row["categoria"]=="Coctel") echo "selected" ?>>Coctel</option>
-										 <option value="Verduras"<?php if($row["categoria"]=="Verduras") echo "selected" ?>>Verduras</option>
+										 <option value="Bebidas"<?php if($row["categoria"]=="Bebidas") echo "selected" ?>>Bebidas</option>
+										 <option value="Helados"<?php if($row["categoria"]=="Helados") echo "selected" ?>>Helados</option>
+										 <option value="Dulces"<?php if($row["categoria"]=="Dulces") echo "selected" ?>>Dulces</option>
+										 <option value="Comidas Rapidas"<?php if($row["categoria"]=="Comidas Rapidas") echo "selected" ?>>Comidas Rapidas</option>
+										 <option value="Paquetes"<?php if($row["categoria"]=="Paquetes") echo "selected" ?>>Paquetes</option>
 									</select>
 								</div>
 							</div>
@@ -226,30 +226,7 @@ $arrayColores = explode(",",$rowColores);
 					</div>
 					
 					<!-- Select Colores -->
-					<div class="form-group"> 
-					 	<label class="col-md-4 control-label">Colores</label>
-							<div class="col-md-4 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<select name="unidad[]" id="unidad" class="form-control selectpicker" >
-										<option value=" " >Seleccione Unidad de Medida</option>
-									 	<option value="Unidad" <?php if(in_array("Unidad",$arrayColores)) echo "selected"; ?>>Unidad</option>
-									 	<option value="1 Kilo" <?php if(in_array("1 Kilo",$arrayColores)) echo "selected"; ?>>1 Kilo</option>
-									 	<option value="900g" <?php if(in_array("900g",$arrayColores)) echo "selected"; ?>>900g</option>
-									 	<option value="800g" <?php if(in_array("800g",$arrayColores)) echo "selected"; ?>>800g</option>
-									 	<option value="700g" <?php if(in_array("700g",$arrayColores)) echo "selected"; ?>>700g</option>
-									 	<option value="600g" <?php if(in_array("600g",$arrayColores)) echo "selected"; ?>>600g</option>
-									 	<option value="500g" <?php if(in_array("500g",$arrayColores)) echo "selected"; ?>>500g</option>
-                                        <option value="400g" <?php if(in_array("400g",$arrayColores)) echo "selected"; ?>>400g</option>
-                                        <option value="300g" <?php if(in_array("300g",$arrayColores)) echo "selected"; ?>>300g</option>
-                                        <option value="200g" <?php if(in_array("200g",$arrayColores)) echo "selected"; ?>>200g</option>
-                                        <option value="100g" <?php if(in_array("100g",$arrayColores)) echo "selected"; ?>>100g</option>
-                                        <option value="1Litro" <?php if(in_array("1Litro",$arrayColores)) echo "selected"; ?>>1Litro</option>
-                                        <option value="1/2Litro" <?php if(in_array("1/2Litro",$arrayColores)) echo "selected"; ?>>1/2Litro</option>
-									</select>
-								</div>
-							</div>
-					</div>
+
 					<!-- Precio -->
 					       
 					<div class="form-group">
