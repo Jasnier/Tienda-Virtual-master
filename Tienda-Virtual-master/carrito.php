@@ -116,19 +116,7 @@ header("Location: login.php");
 
                                     <table cellspacing="0">
                                         <tbody>
-                                            <tr class="shipping">
-                                                <th>Costo De Envío</th>
-                                                <td>$<?php 
-                                                    if($subtotal > 50000){
-                                                    $envio=0;
-                                                    } elseif($subtotal >25000){
-                                                    $envio=2000;
-                                                    } else {
-                                                    $envio=5000;
-                                                    }
-                                                    echo number_format($envio,0, ',', '.');?>
-                                               </td>
-                                            </tr>
+                                            
 
                                              <tr id="descuento" <?php if($subtotal <= 50000) : ?>class="descuento"<?php endif;?>>
                                                   <td class="success">Descuento 10%</td>
@@ -142,11 +130,11 @@ header("Location: login.php");
                                             </tr>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>$<?php echo number_format($subtotal=($subtotal+$envio)-$descuento, 0, ',', '.');?></td>
+                                                <td>$<?php echo number_format($subtotal=($subtotal)-$descuento, 0, ',', '.');?></td>
                                             </tr>
                                             <tr>
-                                                <td>iva 19%</td>
-                                                <td>$<?php echo number_format($iva = $subtotal*0.19, 0, ',', '.');?></td>
+                                                <td>Costo reserva</td>
+                                                <td>$<?php echo number_format($iva = 500, 0, ',', '.');?></td>
                                             </tr>
 
                                             <tr class="order-total">

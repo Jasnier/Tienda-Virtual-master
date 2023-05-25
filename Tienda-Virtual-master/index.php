@@ -84,7 +84,7 @@ $total_pag = ceil($total/$max)-1;
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-6">
                                             <div class="slide-content">
-                                                <h2>Compre desde su celular o PC</h2>
+                                                <h2>Reserva desde cualquier dispositivo</h2>
                                                 <p>Nuestra plataforma ha sido creada para hacer mas accesible la compra de los productos</p>
                                                 <a href="registro.php" class="readmore">Registrese En Nuestro Sitio <i class="fa fa-users"></i></a>
                                             </div>

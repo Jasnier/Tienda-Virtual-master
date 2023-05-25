@@ -814,8 +814,14 @@ table.shop_table th {
     text-transform: uppercase;
 }
 td.product-thumbnail img {
-    height: auto;
+    height: 10px;
     width: 70px;
+}
+
+.img-responsive{
+    height: 200px;
+    margin-left: 15%;
+   
 }
 
 
