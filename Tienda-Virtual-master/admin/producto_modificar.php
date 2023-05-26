@@ -10,8 +10,16 @@ header("Location: index.php");
 require_once('../conexion.php'); ?>
 <?php
 if(isset($_POST["enviar"]) && $_POST["enviar"] == "Modificar"){
-		$unidad=implode(',',$_POST["unidad"]);
-		$q="UPDATE `productos` SET `nombre` = '$_POST[nombre]', `codigo` = '$_POST[codigo]', `categoria` = '$_POST[categoria]', `frase_promocional` = '$_POST[frase_promocional]', `precio` = '$_POST[precio]', `disponibilidad` = '$_POST[disponibilidad]', `descripcion` = '$_POST[descripcion]', `promocion` = '$_POST[promocion]' WHERE `productos`.`id` = $_POST[id];";
+	$nombreImagen = $_POST["codigo"] . '.jpg'; // Nombre fijo para la imagen
+    $directorioDestino = 'C:/xampp/htdocs/Tienda-Virtual-master/Tienda-Virtual-master/img/'; // Directorio donde se guardará la imagen
+    $rutaDestino = $directorioDestino . $nombreImagen;
+    
+    if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+        echo 'La imagen se ha subido correctamente y ha sido renombrada como ' . $nombreImagen;
+    } else {
+        echo 'Ha ocurrido un error al subir la imagen.';
+    }
+		$q="UPDATE `productos` SET `nombre` = '$_POST[nombre]', `categoria` = '$_POST[categoria]', `frase_promocional` = '$_POST[frase_promocional]', `precio` = '$_POST[precio]', `disponibilidad` = '$_POST[disponibilidad]', `descripcion` = '$_POST[descripcion]', `promocion` = '$_POST[promocion]' WHERE `productos`.`id` = $_POST[id];";
 		$resource=$conn->query($q);
 		header("Location: listado_productos.php");
 	}
@@ -50,114 +58,7 @@ $arrayColores = explode(",",$rowColores);
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
 		<script type="text/javascript">
-			  $(document).ready(function() {
-    $('#Modificar').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            nombre: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                    },
-                        notEmpty: {
-                        message: 'Ingrese Nombre del Producto'
-                    }
-                }
-            },
-			 codigo: {
-                validators: {
-                     stringLength: {
-                        min: 5,
-                    },
-                    notEmpty: {
-                        message: 'Ingrese Codigo del Producto (Mínimo 5 caracteres)'
-                    }
-                }
-            },
-			 categoria: {
-                validators: {
-                     stringLength: {
-                        min: 5,
-                    },
-                    notEmpty: {
-                        message: 'Ingrese la cetegoría del Producto'
-                    }
-                }
-            },
-			disponibilidad: {
-                validators: {
-                     stringLength: {
-                        min: 1,
-                    },
-                    notEmpty: {
-                        message: 'Ingrese la categoría del Producto'
-                    }
-                }
-            },
-			frase_promocional: {
-                validators: {
-                     stringLength: {
-                        min: 20,
-                    },
-                    notEmpty: {
-                        message: 'Ingrese Frase Promocional (Mínimo 20 caracteres)'
-                    }
-                }
-            },
-			descripcion: {
-                validators: {
-                     stringLength: {
-                        min: 20,
-                    },
-                    notEmpty: {
-                        message: 'Ingrese Descripción Del Producto (Mínimo 20 caracteres)'
-                    }
-                }
-            },
-           	unidad: {
-                validators: {
-                    notEmpty: {
-                        message: 'Seleccione Mínimo un color'
-                    }
-                }
-            },
-            precio: {
-                validators: {
-                     stringLength: {
-                        min: 1,
-                    },
-                    notEmpty: {
-                        message: 'Ingrese Precio del Producto'
-                    }
-                }
-            },              
-           }
-        })
-        .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-                $('#contact_form').data('bootstrapValidator').resetForm();
-
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
-        });
-});
-		</script>
+			  	</script>
 	</head>
 		<body>
          <?php 
@@ -183,31 +84,22 @@ $arrayColores = explode(",",$rowColores);
 					  </div>
 					</div>
 					
-					<!-- Email input-->
-					      	<div class="form-group">
-							  <label class="col-md-4 control-label">Código</label>  
-							    <div class="col-md-4 inputGroupContainer">
-							    <div class="input-group">
-							        <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-							  		<input name="codigo" id="codigo" placeholder="Ingrese Código" class="form-control"  type="text" style="text-transform: uppercase" value="<?php echo $row["codigo"]?>">
-							    </div>
-							  </div>
-							</div>
+
 
 					<!-- Categoria input-->
 					       
 					<div class="form-group"> 
-					 	<label class="col-md-4 control-label">Categoría</label>
+					 	<label class="col-md-4 control-label">Categorías</label>
 							<div class="col-md-4 selectContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<select name="categoria" id="categoria" class="form-control selectpicker" >
-										<option value=" " >Seleccione Una categoría</option>
-										 <option value="Bebidas"<?php if($row["categoria"]=="Bebidas") echo "selected" ?>>Bebidas</option>
-										 <option value="Helados"<?php if($row["categoria"]=="Helados") echo "selected" ?>>Helados</option>
-										 <option value="Dulces"<?php if($row["categoria"]=="Dulces") echo "selected" ?>>Dulces</option>
-										 <option value="Comidas Rapidas"<?php if($row["categoria"]=="Comidas Rapidas") echo "selected" ?>>Comidas Rapidas</option>
-										 <option value="Paquetes"<?php if($row["categoria"]=="Paquetes") echo "selected" ?>>Paquetes</option>
+									<select name="categoria" id="categoria" class="form-control selectpicker" required>
+										<option value="" selected>Seleccione una categoría</option>
+									 	<option value="Bebidas">Bebidas</option>
+									 	<option value="Helados">Helados</option>
+									 	<option value="Dulces">Dulces</option>
+									 	<option value="Comidas Rapidas">Comidas Rapidas</option>
+									 	<option value="Paquetes">Paquetes</option>
 									</select>
 								</div>
 							</div>
@@ -226,7 +118,7 @@ $arrayColores = explode(",",$rowColores);
 					</div>
 					
 					<!-- Select Colores -->
-
+	
 					<!-- Precio -->
 					       
 					<div class="form-group">

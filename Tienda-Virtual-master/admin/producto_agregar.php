@@ -1,34 +1,4 @@
-<?php
-// Obtener la categoría seleccionada (si se ha seleccionado)
-$categoria = $_GET['categoria'];
 
-// Consulta SQL para obtener los productos filtrados por categoría
-if (!empty($categoria)) {
-    $consulta = "SELECT * FROM productos WHERE categoria = '$categoria'";
-} else {
-    $consulta = "SELECT * FROM productos";
-}
-
-// Ejecutar la consulta y procesar los resultados
-// ...
-?>
-En este ejemplo, se verifica si se ha seleccionado una categoría ($categoria). Si se ha seleccionado una categoría, la consulta SQL se modifica para incluir la cláusula WHERE que filtra los productos por esa categoría específica. De lo contrario, si no se ha seleccionado una categoría, se seleccionan todos los productos sin aplicar ningún filtro.
-
-Recuerda adaptar este código a tu estructura de base de datos y a las variables que estés utilizando en tu proyecto.
-
-Espero que esto solucione el problema de filtrado por categoría. Si sigues teniendo dificultades, por favor proporciona más detalles o el código relevante para que pueda ayudarte mejor.
-
-
-
-
-
-User
-implementa este codigo en el mio porfavor
-ChatGPT
-Aquí tienes el código modificado con las modificaciones sugeridas para filtrar los productos por categoría:
-
-php
-Copy code
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 if (!isset($_SESSION)) session_start();
@@ -62,19 +32,6 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
     }
 }
 
-// Obtener la categoría seleccionada (si se ha seleccionado)
-$categoria = $_GET['categoria'];
-
-// Consulta SQL para obtener los productos filtrados por categoría
-if (!empty($categoria)) {
-    $consulta = "SELECT * FROM productos WHERE categoria = '$categoria'";
-} else {
-    $consulta = "SELECT * FROM productos";
-}
-
-// Ejecutar la consulta y procesar los resultados
-$resource = $conn->query($consulta);
-// ...
 
 ?>
 <!DOCTYPE html>
@@ -109,6 +66,10 @@ $resource = $conn->query($consulta);
 </head>
 
 <body>
+    <?php 
+        include("header.php"); 
+        include("menu_admin.php"); 
+    ?>
     <div class="container">
         <form class="well form-horizontal" method="post" enctype="multipart/form-data" id="agregarProducto" name="registro">
             <fieldset>
@@ -208,10 +169,10 @@ $resource = $conn->query($consulta);
 						 <label class="col-md-4 control-label">En Promoción</label>
 						 <div class="col-md-4 inputGroupContainer">        	      
 							<div class="radio">
-							  <label><input type="radio" name="promocion" value="1" required>Si</label>
+							  <label><input type="radio" name="promocion" value="Si" required>Si</label>
 							</div>
 							<div class="radio">
-							  <label><input type="radio" name="promocion" value="0" required>No</label>
+							  <label><input type="radio" name="promocion" value="No" required>No</label>
 							</div>
 						 </div>
 				</div>

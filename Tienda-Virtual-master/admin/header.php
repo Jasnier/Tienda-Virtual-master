@@ -1,4 +1,4 @@
-<h1 class="titulo"><a href="listado_productos.php"><img src="../img/Logotipo.png" alt="Logo"></a></h1>
+<h1 class="titulo"><a href="listado_productos.php"><img src="../img/LogotipopxB.png" alt="Logo"></a></h1>
 
 <style>
 .titulo {

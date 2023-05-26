@@ -72,7 +72,7 @@ $row = $resource->fetch_assoc();
                                     <p><i class="fa fa-quote-left" aria-hidden="true"></i> <span class="frase-promo"><?php echo $row["frase_promocional"]?> </span><i class="fa fa-quote-right " aria-hidden="true"></i></p>
                                     <div class="product-inner-price">
                                         <ins>$ <?php echo $row["precio"]?></ins>  
-                                        Antes $<del><?php echo $row["precio"]+($row["precio"]*0.4)?></del>
+                                       
                                     </div> 
 
                                     

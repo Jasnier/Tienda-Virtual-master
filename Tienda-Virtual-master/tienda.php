@@ -197,7 +197,7 @@ $dir = "";
                         </div>
                         <h2><a href="producto.php?id=<?php echo $row["id"]?>"><?php echo $row["nombre"]?></a></h2>
                         <div class="product-carousel-price">
-                            <ins>$ <?php echo $row["precio"]?> <?php echo $row["codigo"]?></ins> Antes $<del><?php echo $row["precio"]+($row["precio"]*0.4)?></del>
+                            <ins>$ <?php echo $row["precio"]?> <?php echo $row["codigo"]?></ins> 
                         </div>  
                         
                         <div class="product-option-shop">
