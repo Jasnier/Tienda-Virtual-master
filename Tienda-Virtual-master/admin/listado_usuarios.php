@@ -18,7 +18,7 @@ if(isset($_GET["pag"]) && $_GET["pag"] <>""){
 $pag=$_GET["pag"];
 }
 $inicio=$pag * $max;
-$query="SELECT id, nombre, email, telefono, nacionalidad FROM clientes ORDER BY fecha DESC";
+$query="SELECT id, nombre, email, telefono FROM clientes ORDER BY fecha DESC";
 $query_limit= $query ." LIMIT $inicio,$max";
 $resource = $conn->query($query_limit);
 if (isset($_GET["total"])) {
@@ -71,7 +71,6 @@ $total_pag = ceil($total/$max)-1;
                     <th>Nombre Usuario</th>
                     <th>Email</th>
                     <th>Teléfono</th>
-                    <th>Nacionalidad</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -80,7 +79,6 @@ $total_pag = ceil($total/$max)-1;
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["nombre"]?></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><a href="mailto:<?php echo $row["email"]?>"><?php echo $row["email"]?></a></td>
                     <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><a href="tel:<?php echo $row["telefono"]?>"><?php echo $row["telefono"]?></a></td>
-                    <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["nacionalidad"]?></td>
                   </tr>
                   <?php }?>
                 </tbody>

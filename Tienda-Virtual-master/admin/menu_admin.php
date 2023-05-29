@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="listado_productos.php">ADMINISTRACIÓN / Frutería Bilbao 610</a>
+      <a class="navbar-brand" href="listado_productos.php">ADMINISTRACIÓN / Coffe Cloud</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,6 +17,8 @@
         <li><a href="listado_productos.php"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Listado de Productos</a></li>
         <li><a href="producto_agregar.php"><i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar Productos Nuevos</a></li>
         <li><a href="listado_usuarios.php"><i class="fa fa-users" aria-hidden="true"></i> Listado de Usuarios</a></li>
+        <li><a href="comprar.php"><i class="fa fa-users" aria-hidden="true"></i> Compras</a></li>
+        <li><a href="detalle.php"><i class="fa fa-users" aria-hidden="true"></i> Entregado</a></li>
         <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

@@ -10,7 +10,7 @@ header("Location: login.php");
 ?>
 <?php
 	if(isset($_POST["enviar"]) && $_POST["enviar"] == "Modificar"){
-		echo $q="UPDATE `clientes` SET `email` = '$_POST[email]', `telefono` = '$_POST[telefono]', `nacionalidad` = '$_POST[nacionalidad]', `direccion` = '$_POST[direccion]', `numero` = '$_POST[numero]', `comuna` = '$_POST[comuna]', `contrasena` = '$_POST[contrasena]' WHERE `clientes`.`id` = $_POST[id];";
+		echo $q="UPDATE `clientes` SET `email` = '$_POST[email]', `telefono` = '$_POST[telefono]', `contrasena` = '$_POST[contrasena]' WHERE `clientes`.`id` = $_POST[id];";
 		$resource=$conn->query($q);
 		header("Location: index.php");
 	}
@@ -105,63 +105,11 @@ $row = $resource->fetch_assoc();
 					
 					
 					<!-- Select -->
-					<div class="form-group"> 
-						<label class="col-md-4 control-label">Nacionalidad</label>
-							<div class="col-md-4 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<select name="nacionalidad" id="nacionalidad" class="form-control selectpicker">
-									  <option value=" ">Seleccione País</option>
-									  <option value="Chile" <?php if($row["nacionalidad"]=="Chile") echo "selected" ?>>Chile</option>
-									  <option value="Argentina" <?php if($row["nacionalidad"]=="Argentina") echo "selected" ?>>Argentina</option>
-									  <option value="Brasil" <?php if($row["nacionalidad"]=="Brasil") echo "selected" ?>>Brasil</option>
-									  <option value="Perú" <?php if($row["nacionalidad"]=="Perú") echo "selected" ?>>Perú</option>
-									  <option value="Bolivia" <?php if($row["nacionalidad"]=="Bolivia") echo "selected" ?>>Bolivia</option>
-									  <option value="Colombia" <?php if($row["nacionalidad"]=="Colombia") echo "selected" ?>>Colombia</option>
-									  <option value="Ecuador" <?php if($row["nacionalidad"]=="Ecuador") echo "selected" ?>>Ecuador</option>
-									  <option value="Paraguay" <?php if($row["nacionalidad"]=="Paraguay") echo "selected" ?>>Paraguay</option>
-									  <option value="Uruguay" <?php if($row["nacionalidad"]=="Uruguay") echo "selected" ?>>Uruguay</option>
-									  <option value="Venezuela" <?php if($row["nacionalidad"]=="Venezuela") echo "selected" ?>>Venezuela</option>
-									</select>
-							  </div>
-							</div>
-					</div>
-
-					<!-- Dirección input-->
-					       	      
-					<div class="form-group">
-					  <label class="col-md-4 control-label">Dirección</label>  
-					    <div class="col-md-4 inputGroupContainer">
-					    <div class="input-group">
-					        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-					  <input name="direccion" id="direccion" placeholder="Calle" class="form-control" type="text" value="<?php echo $row["direccion"]?>">
-					    </div>
-					  </div>
-					</div>
 					
-					<!-- Número Dirección input-->
-					       
-					<div class="form-group">
-					  <label class="col-md-4 control-label">Número</label>  
-					    <div class="col-md-4 inputGroupContainer">
-					    <div class="input-group">
-					        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-					  <input name="numero" id="numero" placeholder="N°" class="form-control" type="text" value="<?php echo $row["numero"]?>">
-					    </div>
-					  </div>
-					</div>
 					       
 					<!-- Comuna input-->
 					       	      
-					<div class="form-group">
-					  <label class="col-md-4 control-label">Comuna</label>  
-					    <div class="col-md-4 inputGroupContainer">
-					    <div class="input-group">
-					        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-					  <input name="comuna" id="comuna" placeholder="Comuna" class="form-control" type="text" value="<?php echo $row["comuna"]?>">
-					    </div>
-					  </div>
-					</div>
+
 
 					<!-- Text input-->
 

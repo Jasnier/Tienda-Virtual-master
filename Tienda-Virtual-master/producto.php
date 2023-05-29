@@ -2,13 +2,24 @@
 error_reporting(E_ALL ^ E_NOTICE);
 require_once('conexion.php'); ?>
 <?php
-if(isset($_POST["comprar"]) && $_POST["comprar"] == "Comprar"){
-    //print_r($_POST);
-		$q="INSERT INTO `compras` (`id`, `cliente`, `codigo`, `nombre`, `precio`, `cantidad`, `fecha`) VALUES (NULL, '$_POST[cliente]', '$_POST[codigo]', '$_POST[nombre]', '$_POST[precio]', '$_POST[cantidad]', CURRENT_TIMESTAMP)";
-		//print_r($q);
-		$resource=$conn->query($q);
-		header("Location: carrito.php");
-	}
+session_start(); // Inicia la sesión
+
+if (isset($_POST["comprar"]) && $_POST["comprar"] == "Comprar") {
+    // Verifica si el usuario ha iniciado sesión
+    if (isset($_SESSION["user_id"])) {
+        // Usuario ha iniciado sesión, guarda el producto en la BD
+        $q = "INSERT INTO `compras` (`id`, `cliente`, `codigo`, `nombre`, `precio`, `cantidad`, `fecha`) VALUES (NULL, '$_POST[cliente]', '$_POST[codigo]', '$_POST[nombre]', '$_POST[precio]', '$_POST[cantidad]', CURRENT_TIMESTAMP)";
+        $resource = $conn->query($q);
+        header("Location: carrito.php");
+    } else {
+        //redireccionar al usuario a la página de inicio de sesión:
+        header("Location: login.php");
+        exit(); // Detiene la ejecución del código
+    }
+}
+
+
+
 ?>
 <?php
 if($_GET["id"]==0){

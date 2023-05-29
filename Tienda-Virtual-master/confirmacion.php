@@ -1,21 +1,22 @@
 <?php 
 error_reporting(E_ALL ^ E_NOTICE);
 require_once("conexion.php");
-session_start();
-?>
 
-<?php 
-if(!isset($_SESSION['user_id'])){
-    $_SESSION['volver'] = $_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING'];
-    header("Location: login.php");
+if(!isset($_GET['pedido'])){
+    header("Location: index.php");
     exit;
 }
-?>
 
-<?php	
-$q = "SELECT * FROM compras WHERE cliente = '{$_SESSION['user_id']}' ORDER BY fecha DESC";
+$q = "SELECT * FROM compras WHERE cliente = (SELECT cliente FROM pedidos WHERE id = {$_GET['pedido']}) ORDER BY fecha DESC";
 $r = $conn->query($q); 
 $t = $r->num_rows;
+
+// Verificar si se encontraron compras para el pedido
+if(empty($_GET['pedido'])){
+    header("Location: index.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +75,10 @@ $t = $r->num_rows;
                                         <?php 
                                         $subtotal = 0; // Inicializar la variable subtotal
                                         while ($row = $r->fetch_assoc()){
+                                            $precio = $row['precio'];
+                                            $cantidad = $row['cantidad'];
+                                            $subtotal_producto = $precio * $cantidad;
+                                            $subtotal += $subtotal_producto; // Agregar el subtotal del producto al subtotal total
                                         ?>
                                         <tr class="cart_item wow fadeIn">
                                             <td class="product-thumbnail">
@@ -85,73 +90,44 @@ $t = $r->num_rows;
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">$<?php echo number_format($precio=$row['precio'], 0, ',', '.');?></span> 
+                                                <span class="amount">$<?php echo number_format($precio, 0, ',', '.'); ?></span> 
                                             </td>
 
                                             <td class="product-quantity">
-                                                <div class="quantity buttons_added">
-                                                    <?php echo $cantidad=$row['cantidad']?>
-                                                </div>
+                                                <?php echo $cantidad;?>
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">$<?php echo number_format($sub=$precio*$cantidad); $subtotal+=$sub?></span> 
+                                                <span class="amount">$<?php echo number_format($subtotal_producto, 0, ',', '.'); ?></span> 
                                             </td>
                                         </tr>
-                                        <?php }?>  
+                                        <?php } ?>
+
                                     </tbody>
+                                    <tfoot>
+                                        <tr class="cart-subtotal wow fadeIn">
+                                            <th colspan="4">Total</th>
+                                            <td>
+                                                <span class="amount">$<?php echo number_format($subtotal, 0, ',', '.');?></span> 
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
-                            <div class="cart_totals col-xs-12 wow fadeIn">
-                                <table cellspacing="0">
-                                    <tbody>
-                                        <tr class="shipping">
-                                            <th>Costo De Envío</th>
-                                            <td>$<?php 
-                                            if($subtotal > 50000){
-                                                $envio=0;
-                                            } elseif($subtotal >25000){
-                                                $envio=2000;
-                                            } else {
-                                                $envio=5000;
-                                            }
-                                            echo number_format($envio,0, ',', '.');?></td>
-                                        </tr>
 
-                                        <tr id="descuento" <?php if($subtotal <= 50000) : ?>class="descuento"<?php endif;?>>
-                                            <td class="success">Descuento 10%</td>
-                                            <td class="success">-$<?php 
-                                            if($subtotal > 50000){
-                                                echo number_format($descuento=($subtotal) *0.10, 0, ',', '.');                
-                                            }else{
-                                               $descuento=0; 
-                                           }
-                                           ?></td>
-                                       </tr>
-                                       <tr>
-                                        <td>Subtotal</td>
-                                        <td>$<?php echo number_format($subtotal=($subtotal+$envio)-$descuento, 0, ',', '.');?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>iva 19%</td>
-                                        <td>$<?php echo number_format($iva = $subtotal*0.19, 0, ',', '.');?></td>
-                                    </tr>
-
-                                    <tr class="order-total">
-                                        <th>Total Pedido</th>
-                                        <td><strong><span class="amount">$<?php echo number_format($total = $subtotal+$iva, 0, ',', '.');?></span></strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="woocommerce-info wow fadeIn">
+                                <p>Gracias por su compra, estaremos en contacto con usted.</p>
+                            </div>                         
                         </div>
-                    </div>                       
-                </div>                    
+                    </div>                    
+                </div>
             </div>
         </div>
     </div>
-    <!-- Footer -->
-    <?php include("footer.php");?><!-- End Footer -->   
-    <!-- JS -->
-    <?php include("js.php");?><!-- End JS -->
+
+    <!-- Pie de Pagina -->
+    <?php include("footer.php");?>    
+    <!-- End Pie de Pagina -->
+
 </body>
 </html>
