@@ -24,9 +24,8 @@ include("head.php") ?>
                     <h2 class="footer-wid-title">Navegación de Administrador</h2>
                     <ul>
                         <?php if(isset($_SESSION["admin_id"])) { ?>
-                            <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i> Gestionar Usuarios</a></li>
-                            <li><a href="#"><i class="fa fa-list-alt"></i> Gestionar Pedidos</a></li>
-                            <li><a href="#"><i class="fa fa-cogs"></i> Configuración</a></li>
+                            <li><a href="listado_usuarios.php"><i class="fa fa-users" aria-hidden="true"></i> Gestionar Usuarios</a></li>
+                            <li><a href="comprar.php"><i class="fa fa-list-alt"></i> Gestionar Pedidos</a></li>
                             <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
                         <?php } ?>
                     </ul>                        

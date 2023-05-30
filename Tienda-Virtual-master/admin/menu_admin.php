@@ -18,7 +18,7 @@
         <li><a href="producto_agregar.php"><i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar Productos Nuevos</a></li>
         <li><a href="listado_usuarios.php"><i class="fa fa-users" aria-hidden="true"></i> Listado de Usuarios</a></li>
         <li><a href="comprar.php"><i class="fa fa-users" aria-hidden="true"></i> Compras</a></li>
-        <li><a href="detalle.php"><i class="fa fa-users" aria-hidden="true"></i> Entregado</a></li>
+        <li><a href="entregado.php"><i class="fa fa-users" aria-hidden="true"></i> Entregado</a></li>
         <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

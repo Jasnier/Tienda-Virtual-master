@@ -9,15 +9,7 @@ if (!$_SESSION["admin_id"]) {
 require_once('../conexion.php');
 
 if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarProducto") {
-    $nombreImagen = $_POST["codigo"] . '.jpg'; // Nombre fijo para la imagen
-    $directorioDestino = 'C:/xampp/htdocs/Tienda-Virtual-master/Tienda-Virtual-master/img/'; // Directorio donde se guardará la imagen
-    $rutaDestino = $directorioDestino . $nombreImagen;
-    
-    if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
-        echo 'La imagen se ha subido correctamente y ha sido renombrada como ' . $nombreImagen;
-    } else {
-        echo 'Ha ocurrido un error al subir la imagen.';
-    }
+
     
     $q = "INSERT INTO `productos` (`id`, `nombre`, `codigo`, `categoria`, `frase_promocional`, `precio`, `disponibilidad`, `descripcion`, `promocion`, `fecha`) VALUES (NULL, '$_POST[nombre]', '$_POST[codigo]', '$_POST[categoria]', '$_POST[frase_promocional]', '$_POST[precio]', '$_POST[disponibilidad]', '$_POST[descripcion]', '$_POST[promocion]', CURRENT_TIMESTAMP)";
     
@@ -25,6 +17,15 @@ if (isset($_POST["agregarProducto"]) && $_POST["agregarProducto"] == "agregarPro
     
     if ($resource) {
         echo 'El producto se ha agregado correctamente.';
+        $nombreImagen = $_POST["codigo"] . '.jpg'; // Nombre fijo para la imagen
+        $directorioDestino = 'C:/xampp/htdocs/Tienda-Virtual-master/Tienda-Virtual-master/img/'; // Directorio donde se guardará la imagen
+        $rutaDestino = $directorioDestino . $nombreImagen;
+        
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+            echo 'La imagen se ha subido correctamente y ha sido renombrada como ' . $nombreImagen;
+        } else {
+            echo 'Ha ocurrido un error al subir la imagen.';
+        }
         header("Location: listado_productos.php");
         exit;
     } else {

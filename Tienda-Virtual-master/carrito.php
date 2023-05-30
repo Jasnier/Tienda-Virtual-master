@@ -186,10 +186,10 @@ if (isset($_POST["confi"]) && $_POST["confi"] == "comprar") {
                 echo '<script>alert("Error: No se pudo obtener el nombre del cliente");</script>';
             }
         }
+
     } else {
         echo '<script>alert("No ha agregado productos en su compra");</script>';
     }
-    
 
 }
 

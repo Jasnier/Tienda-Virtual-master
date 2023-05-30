@@ -41,8 +41,7 @@ if($consulta != ""){
         $conditions[] = " (nombre LIKE '%$s%' OR descripcion LIKE '%$s%' OR frase_promocional LIKE '%$s%' ) ";
     }
 
-    $query =   "SELECT id,nombre,codigo, frase_promocional, precio FROM productos
-            ";
+    $query =   "SELECT id,nombre,codigo, frase_promocional, precio FROM productos";
 
     if(isset($conditions)){
         $query .= " WHERE ".implode(" AND ",$conditions);
@@ -130,6 +129,8 @@ $dir = "";
     
     <!-- Menu Principal -->
     <?php include("menu.php");?>    
+
+
     <!-- End Menu Principal -->
         
     <div class="product-big-title-area">
@@ -183,7 +184,21 @@ $dir = "";
         </div>
     </div>
     
-      
+    
+    <div class="container">
+    <ul class="pager">
+      <?php if ($pag - 1 >= 0) { ?>
+        <li><a href="comprar.php?pag=<?php echo $pag - 1 ?>&total=<?php echo $total ?>">Anterior</a></li>
+      <?php } ?>
+      |
+      <?php echo ($inicio + 1) ?> a
+      <?php echo min($inicio + $max, $total) ?> | de
+      <?php echo $total ?>
+      <?php if ($pag + 1 <= $total_pag) { ?>
+        <li><a href="comprar.php?pag=<?php echo $pag + 1 ?>&total=<?php echo $total ?>">Siguiente</a></li>
+      <?php } ?>
+    </ul>
+  </div>
     
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
@@ -192,8 +207,8 @@ $dir = "";
                <?php  while ($row = $resource_limit->fetch_assoc()){?>
                 <div class="col-md-3 col-sm-6 wow fadeIn">
                     <figure class="single-shop-product">
-                        <div class="product-upper">
-                            <a href="producto.php?id=<?php echo $row["id"]?>"> <img src="img/<?php echo $row["codigo"]?>.jpg" class="img-responsive img-thumbnail producto-tienda" alt="<?php echo $row["nombre"]?>"></a>
+                        <div class="product-upper" style="width: 200px;">
+                            <a href="producto.php?id=<?php echo $row["id"]?>"> <img src="img/<?php echo $row["codigo"]?>.jpg" class="img-responsive img-thumbnail producto-tienda" style="width: 200px;" alt="<?php echo $row["nombre"]?>"></a>
                         </div>
                         <h2><a href="producto.php?id=<?php echo $row["id"]?>"><?php echo $row["nombre"]?></a></h2>
                         <div class="product-carousel-price">

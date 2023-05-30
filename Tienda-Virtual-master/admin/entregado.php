@@ -10,7 +10,7 @@ require_once('../conexion.php');
 
 <?php
 if(isset($_GET["idElm"]) && $_GET["idElm"] != ""){
-  $q = "DELETE FROM clientes WHERE 1 AND id='$_GET[idElm]'";
+  $q = "DELETE FROM entregas WHERE 1 AND id='$_GET[idElm]'";
   $r = $conn->query($q);
 }
 
@@ -22,7 +22,7 @@ if(isset($_GET["pag"]) && $_GET["pag"] != ""){
 }
 
 $inicio = $pag * $max;
-$query = "SELECT id, id_cliente, nombre, valor, estado, fecha FROM entregas ORDER BY fecha DESC";
+$query = "SELECT id, id_cliente, nombre, valor, estado, fecha,FechaConfirmacion FROM entregas ORDER BY fecha DESC";
 $query_limit = $query . " LIMIT $inicio, $max";
 $resource = $conn->query($query_limit);
 
@@ -41,7 +41,7 @@ $total_pag = ceil($total/$max) - 1;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Usuarios</title>
+  <title>Entregados</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!-- Font Awesome -->
@@ -61,11 +61,11 @@ $total_pag = ceil($total/$max) - 1;
   <div class="container">                 
     <ul class="pager">
       <?php if ($pag - 1 >= 0) { ?>
-        <li><a href="detalle.php?pag=<?php echo $pag - 1 ?>&total=<?php echo $total ?>">Anterior</a></li>
+        <li><a href="entregado.php?pag=<?php echo $pag - 1 ?>&total=<?php echo $total ?>">Anterior</a></li>
       <?php } ?>
       | <?php echo ($inicio + 1) ?> a <?php echo min($inicio + $max, $total) ?> | de <?php echo $total ?>
       <?php if ($pag + 1 <= $total_pag) { ?>
-        <li><a href="detalle.php?pag=<?php echo $pag + 1 ?>&total=<?php echo $total ?>">Siguiente</a></li>
+        <li><a href="entregado.php?pag=<?php echo $pag + 1 ?>&total=<?php echo $total ?>">Siguiente</a></li>
       <?php } ?>
     </ul>
   </div>
@@ -76,11 +76,14 @@ $total_pag = ceil($total/$max) - 1;
       <table class="table">
         <thead>
           <tr>
-            <th>ID cliente</th>
+            <th>ID Compra</th>
+            <th>ID Cliente</th>
             <th>Nombre</th>
             <th>Valor</th>
             <th>Estado</th>
-            <th>Fecha</th>
+            <th>Fecha Compra</th>
+            <th>Fecha Entrega</th>
+            <th>Borrar</th>
           </tr>
         </thead>
         <tbody>
@@ -93,12 +96,17 @@ $total_pag = ceil($total/$max) - 1;
             }
             ?>
             <tr>
+            <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["id"] ?></td>
               <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["id_cliente"] ?></td>
               <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><a href="mailto:<?php echo $row["nombre"] ?>"><?php echo $row["nombre"] ?></a></td>
               <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><a href="mailto:<?php echo $row["valor"] ?>"><?php echo $row["valor"] ?></a></td>
               <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $estado ?></td>
               <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["fecha"] ?></td>
-              
+              <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><?php echo $row["FechaConfirmacion"] ?></td>
+              <td class="col-xs-3 col-sm-3 col-md-4 col-lg-3"><a
+                  href="entregado.php?idElm=<?php echo $row["id"]?>" class="btn btn-md btn-danger"
+                  onClick="return confirm('¿Está seguro que desea eliminar este Producto?')"><span
+                    class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
             </tr>
           <?php } ?>
         </tbody>
@@ -118,5 +126,6 @@ $total_pag = ceil($total/$max) - 1;
     });
   </script>
 </body>
+<?php include("footer.php"); ?>
 
 </html>
