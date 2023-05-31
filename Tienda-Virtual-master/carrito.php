@@ -178,6 +178,12 @@ if (isset($_POST["confi"]) && $_POST["confi"] == "comprar") {
                 $q = "INSERT INTO `pedido` (`cliente`, `nombre`, `valor`, `estado`, `fecha`) VALUES ('$clienteID', '$clienteNombre', '$valorTotal', '0', CURRENT_TIMESTAMP)";
                 $resource = $conn->query($q);
  
+                $q2 = "INSERT INTO `historial` (`id_cliente`, `nombre`, `valor`, `estado`, `fecha`,`fechaentrega`) VALUES ('$clienteID', '$clienteNombre', '$valorTotal', '0', CURRENT_TIMESTAMP, NULL)";
+                $resource2 = $conn->query($q2);
+
+
+
+
 
 
                 echo '<script>alert("su compra se realizo con exito");</script>';

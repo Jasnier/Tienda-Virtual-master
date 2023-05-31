@@ -94,6 +94,9 @@ $total_pag = ceil($total / $max) - 1;
     } else {
       $insertQuery = "INSERT INTO entregas (id_cliente, nombre, valor,estado, fecha,FechaConfirmacion) VALUES ('$cliente', '$nombre', '$valor','$estado', '$fecha', CURRENT_TIMESTAMP)";
       $insertResult = $conn->query($insertQuery);
+
+      $u="UPDATE `historial` SET `estado` = '1', `fechaentrega` = CURRENT_TIMESTAMP WHERE `historial`.`id` = $cliente;";
+      $insertU=$conn->query($u);
       $d = "DELETE FROM pedido WHERE `pedido`.`id` =$pedidoID";
       $rd = $conn->query($d);
       if ($insertResult) {

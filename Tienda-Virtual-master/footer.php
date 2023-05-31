@@ -1,4 +1,4 @@
-    <div class="footer-top-area wow fadeIn">
+    <div class="footer-top-area wow fadeIn" style="margin-top: 200px;">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
