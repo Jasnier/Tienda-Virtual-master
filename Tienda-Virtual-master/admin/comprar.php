@@ -262,17 +262,11 @@ $total_pag = ceil($total / $max) - 1;
 
       // Función para actualizar la tabla de usuarios mediante Ajax
       function updateTable() {
-        $.ajax({
-          url: "update_table.php", // Archivo PHP que devuelve el contenido actualizado de la tabla
-          success: function (data) {
-            $("#user-table").html(data); // Actualizar el contenido de la tabla con los datos recibidos
-          }
-        });
-      }
+
 
       // Actualizar la tabla cada 5 segundos
       setInterval(updateTable, 5000);
-    });
+    }});
   </script>
 
 
